@@ -48,15 +48,14 @@ function buildMetadata(sample) {
 // Challenge //
 
 // Declare buildCharts(sample) function to pull d3.json and samples data file.
-function buildCharts(sample) {
-    d3.json("samples.json").then((data) => {
-      var samples = data.samples;
-      var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
-      var result = resultArray[0];
+//function buildCharts(sample) {
+    //d3.json("samples.json").then((data) => {
+      //var samples = data.samples;
+      //var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
+      //var result = resultArray[0];
       
-      var PANEL = d3.select("#sample-metadata");
+      //var PANEL = d3.select("#sample-metadata");
   
-      PANEL.html("");
+      //PANEL.html("");
 
 // Create a bar chart of the top ten bacterial species in a volunteer's navel.
-
