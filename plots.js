@@ -11,15 +11,20 @@ function init() {
             .text(sample)
             .property("value", sample);
     });
-  });
+// Declare buildMetaData and buildCharts variables with first sample showing on page.
+    var sample_one = sampleNames[0];
+        buildCharts(sample_one);
+        buildMetadata(sample_one);  
+    });
 }
-
-// Step 1. Declare buildMetaData and buildCharts variables
+// Declare buildMetaData and buildCharts variables
 // (These change as the sample number updates)
 function optionChanged(newSample) {
     buildMetadata(newSample);
     buildCharts(newSample);
 }
+// Close function initializing dashboard.
+init();
 
 // Print information to the Demographic Info panel when ID # is selected.
 // Step 2. Declare buildMetadata() function.
@@ -80,19 +85,22 @@ function buildCharts(sample) {
         mode: 'markers',
         marker: {
         color: otu_ids,
-        colorscale: 'balance',
+        // Found colorscale "earth" using plotly.colors.divering in Plotly documentation.
+        colorscale: 'Earth',
         size: sample_values,
     }
   };
     var bubble_data = [trace1];
   
     var bubble_layout = {
-        title: 'OTU ID',
+        xaxis: { title:
+            {text: 'OTU ID',}
+        },
         hovermode: "closest",
         showlegend: false,
         margin: { t: 0},
   };
   
   Plotly.newPlot("bubble", bubble_data, bubble_layout);
-});
+    });
 }
