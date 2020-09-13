@@ -11,13 +11,11 @@ function init() {
             .text(sample)
             .property("value", sample);
     });
-        var firstSample = sampleNames[0];
-        buildMetadata(firstSample);
-        buildCharts(firstSample);
   });
 }
 
 // Step 1. Declare buildMetaData and buildCharts variables
+// (These change as the sample number updates)
 function optionChanged(newSample) {
     buildMetadata(newSample);
     buildCharts(newSample);
@@ -73,5 +71,28 @@ function buildCharts(sample) {
         margin: { t:50, l: 150 }
 };
     Plotly.newPlot("bar", chart_data, chart_layout);
-    });
+
+// Create Bubble Chart to display each sample.
+    var trace1 = {
+        x: otu_ids,
+        y: sample_values,
+        text: otu_labels,
+        mode: 'markers',
+        marker: {
+        color: otu_ids,
+        colorscale: 'balance',
+        size: sample_values,
+    }
+  };
+    var bubble_data = [trace1];
+  
+    var bubble_layout = {
+        title: 'OTU ID',
+        hovermode: "closest",
+        showlegend: false,
+        margin: { t: 0},
+  };
+  
+  Plotly.newPlot("bubble", bubble_data, bubble_layout);
+});
 }
